@@ -26,11 +26,14 @@ class ZendeskDatabase:
         self.ticket_table = self.db.table('tickets')
         self.query = Query()
         self.searchTerms = {}
+        if len(self.db.tables()) == 0:
+            self.initializeDatabase()
 
     def initializeDatabase(self) -> None:
         """This will read all the json files and create a single database using
         TinyDB for searching. Within the Zendesk database, we will have three
-        tables - Users, Organization & Tickets.
+        tables - Users, Organization & Tickets. It will also populate the 
+        search terms for each table.
         """
         print("Please wait while the little elves draw your map")
         logging.info("Loading data files into database")
@@ -43,7 +46,7 @@ class ZendeskDatabase:
                 for entry in json_data:
                     searchTerms.extend(list(entry.keys()))
                     self.organization_table.insert(entry)
-                self.searchTerms['organizations'] = list(set(searchTerms))
+                self.searchTerms['organizations'] = sorted(list(set(searchTerms)))
 
             with open("app/data/users.json", "r") as f:
                 logging.info("Loading Users data into db")
@@ -53,7 +56,7 @@ class ZendeskDatabase:
                 for entry in json_data:
                     searchTerms.extend(list(entry.keys()))
                     self.user_table.insert(entry)  # insert it in the DB
-                self.searchTerms['users'] = list(set(searchTerms))
+                self.searchTerms['users'] = sorted(list(set(searchTerms)))
 
             with open("app/data/tickets.json", "r") as f:
                 logging.info("Loading Tickets data into db")
@@ -63,11 +66,15 @@ class ZendeskDatabase:
                 for entry in json_data:
                     searchTerms.extend(list(entry.keys()))
                     self.ticket_table.insert(entry)  # insert it in the DB
-                self.searchTerms['tickets'] = list(set(searchTerms))
+                self.searchTerms['tickets'] = sorted(list(set(searchTerms)))
             return True
         except FileNotFoundError as e:
             logging.exception("Data file not found "+e)
             print("One of the data files is missing")
+            sys.exit()
+        except json.JSONDecodeError as e:
+            logging.exception("JSON file is not valid "+str(e))
+            print("JSON File is not valid! Exiting now...")
             sys.exit()
 
     def userSearch(self, parameter, value) -> List[Dict]:

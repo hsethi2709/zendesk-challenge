@@ -83,7 +83,7 @@ class ZendeskPrompts:
             'type': 'list',
             'name': 'search_term',
             'message': "Select the field you would like to search",
-            'choices': sorted(searchTerms)
+            'choices': (searchTerms)
         },
             {
             'type': 'input',

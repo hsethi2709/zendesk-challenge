@@ -17,7 +17,6 @@ class ZendeskDatabaseInfo:
         """
         logging.info("Initialising Database helper service")
         self.db = ZendeskDatabase()
-        self.db.initializeDatabase()
 
     def listAllSearchableFields(self) -> Dict[str, List]:
         """Fetches list of all key fields present in documents

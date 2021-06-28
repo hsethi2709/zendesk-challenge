@@ -163,10 +163,12 @@ class ZendeskSearch:
                 return {"status": False,
                         "message": "Invalid ID! Please enter an integer value"}
         elif self.term == '_id' and table == 'Tickets':
-            if isinstance(self.value, int) or not self.value.isalnum():
+            regex = '^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$'
+            if (isinstance(self.value, int) or
+                    not re.search(regex, self.value)):
                 return {"status": False,
-                        "message": "Invalid ID! Please enter an " +
-                                   "alphanumeric value"}
+                        "message": "Invalid ID! Please enter a " +
+                                   "valid Ticket ID!"}
 
         # Input Validation - email
         elif self.term == 'email':
