@@ -18,7 +18,7 @@ def setup():
     return db
 
 
-class DatabaseTest:
+class TestDatabase:
     def test_database_tables(self, setup):
         assert len(setup.db.tables()) == 3
 
