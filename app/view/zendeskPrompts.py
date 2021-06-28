@@ -15,6 +15,10 @@ from app.controller.listFields import ZendeskDatabaseInfo
 
 
 class ZendeskPrompts:
+    """
+    This class encapsules everything related to displaying information and 
+    printing prompts for the user
+    """
     def __init__(self) -> None:
         logging.info("Initialising Zendesk Prompts")
         self.searchTerms = ZendeskDatabaseInfo().listAllSearchableFields()

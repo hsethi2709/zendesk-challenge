@@ -16,6 +16,10 @@ from app.model.db import ZendeskDatabase
 
 
 class ZendeskSearch:
+    """
+    This is a Search service class which will fetch data from the database
+    and manipulate it as per the requirements
+    """
     def __init__(self, term, value) -> None:
         """Initialises the search term and search value
 

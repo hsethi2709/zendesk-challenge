@@ -12,6 +12,10 @@ from app.model.db import ZendeskDatabase
 
 
 class ZendeskDatabaseInfo:
+    """
+    A database helper class to fetch list of terms and other statistical 
+    information about database if required.
+    """
     def __init__(self) -> None:
         """Initiates connection to database
         """
