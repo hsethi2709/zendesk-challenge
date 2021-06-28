@@ -46,7 +46,8 @@ invalid_user_inputs = [
 invalid_organization_inputs = [
     ('_id', 'test-string', {'status': False, 'message': 'Invalid ID! Please enter an integer value'}),
     ('_id', '$71', {'status': False, 'message': 'Invalid ID! Please enter an integer value'}),
-    ('shared_tickets', 'true', {'status': False, 'message': 'Invalid input type! Acceptable inputs - True/False'})
+    ('shared_tickets', 'true', {'status': False, 'message': 'Invalid input type! Acceptable inputs - True/False'}),
+    ('name', 'kof', {'status': True, 'data': [{'_id': 105, 'url': 'http://initech.zendesk.com/api/v2/organizations/105.json', 'external_id': '52f12203-6112-4fb9-aadc-70a6c816d605', 'name': 'Koffee', 'domain_names': ['farmage.com', 'extrawear.com', 'bulljuice.com', 'enaut.com'], 'created_at': '2016-06-06T02:50:27 -10:00', 'details': 'MegaCorp', 'shared_tickets': False, 'tags': ['Jordan', 'Roy', 'Mckinney', 'Frost'], 'users': ['Kari Vinson', 'Lee Dotson'], 'ticket_0': 'A Catastrophe in Hungary', 'ticket_1': 'A Catastrophe in Pakistan', 'ticket_2': 'A Nuisance in Nicaragua', 'ticket_3': 'A Catastrophe in Italy', 'ticket_4': 'A Drama in Wallis and Futuna Islands', 'ticket_5': 'A Nuisance in Yemen', 'ticket_6': 'A Problem in Oman', 'ticket_7': 'A Catastrophe in Iran', 'ticket_8': 'A Nuisance in Tokelau', 'ticket_9': 'A Drama in Saint Vincent and The Grenadines', 'ticket_10': 'A Catastrophe in Jordan'}]})
 ]
 
 
@@ -89,7 +90,7 @@ class TestOrganizationSearch:
     @pytest.mark.parametrize('parameter, value, expected',
                              invalid_organization_inputs)
     def test_invalid_input_search(self, parameter, value, expected):
-        assert ZendeskSearch(parameter, value).userSearch() == expected
+        assert ZendeskSearch(parameter, value).organizationSearch() == expected
 
     @pytest.mark.parametrize('parameter, value, expected', multiple_value_test)
     def test_any_tag_retrieval(self, parameter, value, expected):

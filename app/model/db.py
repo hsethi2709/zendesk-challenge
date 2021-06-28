@@ -16,6 +16,9 @@ from tinydb import Query, TinyDB
 
 
 class ZendeskDatabase:
+    """
+    This is a database class to initialize or query specific tables
+    """
     def __init__(self) -> None:
         """Creates a connection to the database
         """
@@ -126,7 +129,7 @@ class ZendeskDatabase:
         return organization
 
     def ticketSearch(self, parameter, value) -> List[Dict]:
-        """Ticket Search in databased based on parameter and value
+        """Ticket Search in database based on parameter and value
 
         Args:
             parameter (str): Criteria for search
