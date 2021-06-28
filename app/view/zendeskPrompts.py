@@ -49,7 +49,7 @@ class ZendeskPrompts:
                 elif answer['search_choice'] == ('2. See a list of all ' +
                                                  'searchable fields'):
                     self.displayResults(self.searchTerms, 'list')
-                    input("Press any key to continue.")
+                    input("Press Enter to continue.")
                 else:
                     print("Thank you for using Zendesk Search! See you next" + 
                           " time!")
@@ -125,7 +125,7 @@ class ZendeskPrompts:
                 if len(results['data']) != 0:
                     self.displayResults(results['data'], 'search')
                     print()
-                    input("Press any key to continue.")
+                    input("Press Enter to continue.")
                 else:
                     print("No results found!")
                 return
