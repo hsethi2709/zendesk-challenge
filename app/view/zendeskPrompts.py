@@ -45,6 +45,7 @@ class ZendeskPrompts:
                 elif answer['search_choice'] == ('2. See a list of all ' +
                                                  'searchable fields'):
                     self.displayResults(self.searchTerms, 'list')
+                    input("Press any key to continue.")
                 else:
                     print("Thank you for using Zendesk Search! See you next" + 
                           " time!")
